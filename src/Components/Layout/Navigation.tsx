@@ -2,6 +2,28 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
+/**
+ * Navigation Component
+ * 
+ * Fixed navigation bar with dynamic color adaptation based on current page/project.
+ * Provides consistent site navigation while respecting each project's brand identity.
+ * 
+ * Key Features:
+ * - Dynamic color system that adapts to project branding
+ * - Animated underline indicator for active page
+ * - Smooth color transitions (500ms duration)
+ * - Click handler for both logo and nav items
+ * - Spring physics for underline animation
+ * 
+ * Design Pattern:
+ * Navigation color changes based on:
+ * - Projects page: Green (Bloom brand color, first project)
+ * - Case study pages: Matches project brand (green for Bloom, white for Robo's/WeatherBeatz)
+ * - All other pages: White
+ * 
+ * This creates visual cohesion with project branding while maintaining usability.
+ */
+
 export const Navigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,6 +36,8 @@ export const Navigation = () => {
     { path: '/about', label: 'About' },
   ];
 
+  // Listen for custom color change events from project carousel
+  // ProjectsPage.tsx dispatches these events when scrolling between projects
   useEffect(() => {
     const handleNavColorChange = (e: Event) => {
       const customEvent = e as CustomEvent;
@@ -24,24 +48,25 @@ export const Navigation = () => {
     return () => window.removeEventListener('navColorChange', handleNavColorChange);
   }, []);
 
+  // Set navigation color based on current route
   useEffect(() => {
-    // Projects page
+    // Projects page - starts with Bloom's green
     if (location.pathname === '/work') {
-      setNavColor('#00461e'); // Green for Bloom (first project)
+      setNavColor('#00461e'); // Bloom brand green
     } 
-    // Bloom case study
+    // Bloom Wellness case study
     else if (location.pathname === '/work/bloom-wellness') {
-      setNavColor('#00461e'); // Green for Bloom case study
+      setNavColor('#00461e'); // Green for brand consistency
     }
-    // Robo's case study
+    // Robo's Wishlist case study
     else if (location.pathname === '/work/robos-wishlist') {
-      setNavColor('#ffffff'); // White for Robo's case study
+      setNavColor('#ffffff'); // White for dark backgrounds
     }
     // WeatherBeatz case study
     else if (location.pathname === '/work/weatherbeatz') {
-      setNavColor('#ffffff'); // White for WeatherBeatz case study
+      setNavColor('#ffffff'); // White for dark backgrounds
     }
-    // All other pages
+    // All other pages (Home, Play, About)
     else {
       setNavColor('#ffffff');
     }
@@ -51,13 +76,14 @@ export const Navigation = () => {
     navigate(path);
   };
 
-  // Function to determine if a nav item should be active
+  // Determine active state for navigation items
+  // Home requires exact match to prevent double underline on /work routes
   const isActive = (itemPath: string) => {
     if (itemPath === '/') {
-      // Home should only be active on exact match
+      // Home only active on exact match (not on /work, /play, etc.)
       return location.pathname === '/';
     }
-    // Other pages use startsWith
+    // Other pages use startsWith for nested routes (e.g., /work/bloom-wellness)
     return location.pathname.startsWith(itemPath);
   };
 
@@ -70,6 +96,7 @@ export const Navigation = () => {
     >
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-20">
+          {/* Logo / Name - Clickable home link */}
           <motion.div
             onClick={() => handleNavigation('/')}
             className="text-2xl font-bold transition-colors duration-500 cursor-pointer"
@@ -80,6 +107,7 @@ export const Navigation = () => {
             Alex Robaczewski
           </motion.div>
 
+          {/* Navigation Links */}
           <div className="flex items-center gap-8">
             {navItems.map((item) => (
               <motion.div
@@ -87,12 +115,16 @@ export const Navigation = () => {
                 onClick={() => handleNavigation(item.path)}
                 className="relative text-sm font-medium transition-all duration-500 cursor-pointer"
                 style={{
-                  color: navColor,
-                  opacity: isActive(item.path) ? 1 : 0.7,
+                  color: navColor, // Adapts to current page/project color
+                  opacity: isActive(item.path) ? 1 : 0.7, // Active link is fully opaque
                 }}
                 whileHover={{ y: -2, opacity: 1 }}
               >
                 {item.label}
+                
+                {/* Animated Active Indicator */}
+                {/* layoutId creates shared animation between nav items */}
+                {/* Spring physics creates smooth, natural-feeling transition */}
                 {isActive(item.path) && (
                   <motion.div
                     layoutId="activeNav"

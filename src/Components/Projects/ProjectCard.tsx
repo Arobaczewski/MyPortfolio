@@ -1,6 +1,25 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+/**
+ * ProjectCard Component
+ * 
+ * Full-screen project slide for the Work page carousel.
+ * Each card represents one project with branding, overview, and action buttons.
+ * 
+ * Key Features:
+ * - Full customization per project (colors, fonts, backgrounds)
+ * - Video or image background support
+ * - Optional logo animations (wiggle for playful brands like Robo's)
+ * - Three action buttons: Demo, GitHub (conditional), Case Study
+ * - Responsive layout (stacks on mobile, side-by-side on desktop)
+ * 
+ * Design Pattern:
+ * Creates immersive, brand-specific experience for each project.
+ * Similar to Apple product showcases - each project gets its own aesthetic
+ * while maintaining consistent information architecture.
+ */
+
 interface ProjectCardProps {
   company: string;
   role: string;
@@ -47,7 +66,7 @@ export const ProjectCard = ({
         backgroundColor,
       }}
     >
-      {/* Video Background */}
+      {/* Video Background - For dynamic projects like WeatherBeatz */}
       {backgroundVideo && (
         <video
           autoPlay
@@ -60,7 +79,7 @@ export const ProjectCard = ({
         </video>
       )}
 
-      {/* Image Background */}
+      {/* Image Background - For static branded backgrounds */}
       {!backgroundVideo && backgroundImage && (
         <div
           className="absolute inset-0 w-full h-full"
@@ -73,22 +92,24 @@ export const ProjectCard = ({
         />
       )}
 
-      {/* Dark overlay for video */}
+      {/* Dark Overlay - Improves text readability on video backgrounds */}
       {backgroundVideo && (
         <div className="absolute inset-0 bg-black/30" />
       )}
 
-      {/* Content Container */}
+      {/* Main Content Container */}
+      {/* Two-column layout: text left, logo right */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-24 max-w-7xl mx-auto w-full">
         
-        {/* Text Content */}
+        {/* Left Column - Project Information */}
         <motion.div
           className="max-w-xl w-full"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Company Name */}
+          {/* Company Name - Uses custom font per project */}
+          {/* e.g., Dancing Script for Robo's playful brand, Arial MT for Bloom's clean look */}
           <h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 md:mb-12 text-center md:text-left"
             style={{ 
@@ -123,7 +144,7 @@ export const ProjectCard = ({
             </p>
           </div>
 
-          {/* Technologies */}
+          {/* Technologies Used */}
           <div className="mb-4 sm:mb-6 md:mb-8">
             <h2 className="text-base sm:text-lg md:text-xl font-bold mb-2" style={{ color: textColor }}>
               Technologies
@@ -133,7 +154,7 @@ export const ProjectCard = ({
             </p>
           </div>
 
-          {/* Skill */}
+          {/* Skill Demonstrated */}
           <div className="mb-6 sm:mb-8 md:mb-12">
             <h2 className="text-base sm:text-lg md:text-xl font-bold mb-2" style={{ color: textColor }}>
               Skill Demonstrated
@@ -144,7 +165,8 @@ export const ProjectCard = ({
           </div>
         </motion.div>
 
-        {/* Logo */}
+        {/* Right Column - Project Logo */}
+        {/* Optional wiggle animation adds personality to playful brands */}
         <motion.div
           className="flex-shrink-0"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -153,7 +175,7 @@ export const ProjectCard = ({
               ? {
                   opacity: 1,
                   scale: 1,
-                  rotate: [0, -3, 3, -3, 3, 0],
+                  rotate: [0, -3, 3, -3, 3, 0], // Wiggle back and forth
                 }
               : {
                   opacity: 1,
@@ -168,7 +190,7 @@ export const ProjectCard = ({
                   rotate: {
                     duration: 2,
                     repeat: Infinity,
-                    repeatDelay: 3,
+                    repeatDelay: 3, // 3s pause between wiggles
                     ease: 'easeInOut',
                   },
                 }
@@ -188,7 +210,8 @@ export const ProjectCard = ({
         </motion.div>
       </div>
 
-      {/* Buttons - Bottom Center */}
+      {/* Action Buttons - Bottom Center */}
+      {/* Three options: Demo, GitHub (conditional), Case Study */}
       <motion.div
         className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-10 px-4 w-full sm:w-auto"
         initial={{ opacity: 0, y: 20 }}
@@ -196,7 +219,7 @@ export const ProjectCard = ({
         transition={{ duration: 0.8, delay: 0.6 }}
       >
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-          {/* Demo Button */}
+          {/* Demo Button - Only renders if demo URL provided */}
           {demoUrl && (
             <motion.a
               href={demoUrl}
@@ -215,7 +238,8 @@ export const ProjectCard = ({
             </motion.a>
           )}
 
-          {/* GitHub Button - Only if githubUrl exists */}
+          {/* GitHub Button - Only renders if GitHub URL provided */}
+          {/* Not all projects have public repos (e.g., Bloom is private) */}
           {githubUrl && (
             <motion.a
               href={githubUrl}
@@ -234,7 +258,8 @@ export const ProjectCard = ({
             </motion.a>
           )}
 
-          {/* Case Study Button */}
+          {/* Case Study Button - Always present */}
+          {/* Links to detailed /work/:slug page */}
           <Link to={`/work/${slug}`} className="w-full sm:w-auto">
             <motion.button
               className="w-full px-6 sm:px-8 md:px-10 py-3 sm:py-3 md:py-4 rounded-lg font-medium text-sm sm:text-base md:text-lg"

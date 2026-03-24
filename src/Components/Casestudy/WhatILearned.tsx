@@ -1,5 +1,22 @@
 import { motion } from 'framer-motion';
 
+/**
+ * WhatILearned Component
+ * 
+ * Reflects on technical skills and lessons gained from the project.
+ * Demonstrates growth mindset and ability to extract learning from experience.
+ * 
+ * Key Features:
+ * - Large, prominent bullet points emphasizing key learnings
+ * - Staggered entrance animations for readability
+ * - Scroll arrow for desktop / divider for mobile navigation
+ * 
+ * Design Intent:
+ * Shows recruiters that I actively reflect on my work and continuously
+ * improve my technical skills. Each bullet highlights a specific skill
+ * or concept learned through hands-on project work.
+ */
+
 interface WhatILearnedProps {
   bullets: string[];
   accentColor: string;
@@ -9,6 +26,7 @@ export const WhatILearned = ({
   bullets,
   accentColor,
 }: WhatILearnedProps) => {
+  // Navigate to "See it Live" section when scroll arrow is clicked
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('see-it-live');
     if (nextSection) {
@@ -18,7 +36,7 @@ export const WhatILearned = ({
 
   return (
     <section 
-      id="outcomes"
+      id="what-i-learned"
       className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black"
     >
       <div className="max-w-5xl mx-auto w-full">
@@ -33,7 +51,8 @@ export const WhatILearned = ({
           What I Learned
         </motion.h2>
 
-        {/* Learnings List */}
+        {/* Learning Statements */}
+        {/* Larger text size emphasizes growth and skill development */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,13 +67,18 @@ export const WhatILearned = ({
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.1 * index // Staggered for better readability
+                }}
                 className="flex items-start gap-4 sm:gap-6"
               >
+                {/* Accent-colored bullet dot (slightly larger than standard bullets) */}
                 <span 
                   className="flex-shrink-0 w-3 h-3 rounded-full mt-2"
                   style={{ backgroundColor: accentColor }}
                 />
+                {/* Larger text emphasizes importance of continuous learning */}
                 <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-neutral-300">
                   {item}
                 </p>
@@ -63,7 +87,7 @@ export const WhatILearned = ({
           </ul>
         </motion.div>
 
-        {/* Divider - Mobile Only */}
+        {/* Section Divider - Mobile Only */}
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}

@@ -1,5 +1,22 @@
 import { motion } from 'framer-motion';
 
+/**
+ * KeyFeatures Component
+ * 
+ * Showcases the main technical features of a project in a card-based grid layout.
+ * Each feature includes a title, screenshot, and bullet-point descriptions.
+ * 
+ * Key Features:
+ * - Responsive grid (1 column mobile, 2 columns tablet, 3 columns desktop)
+ * - Staggered entrance animations for visual interest
+ * - Project-branded glow effects on screenshots using accent color
+ * - Scroll arrow for desktop / divider for mobile navigation
+ * 
+ * Design Pattern:
+ * Feature cards follow a consistent structure: Title → Screenshot → Bullets
+ * This creates a scannable layout that quickly communicates technical capabilities.
+ */
+
 interface Feature {
   title: string;
   bullets: string[];
@@ -15,6 +32,7 @@ export const KeyFeatures = ({
   features,
   accentColor,
 }: KeyFeaturesProps) => {
+  // Navigate to Impact section when scroll arrow is clicked
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('impact');
     if (nextSection) {
@@ -28,7 +46,7 @@ export const KeyFeatures = ({
       className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black"
     >
       <div className="max-w-7xl mx-auto w-full">
-        {/* Section Title */}
+        {/* Section Heading */}
         <motion.h2 
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12 sm:mb-16 md:mb-20 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +57,8 @@ export const KeyFeatures = ({
           Key Features
         </motion.h2>
 
-        {/* Feature Blocks Grid */}
+        {/* Feature Cards Grid */}
+        {/* Responsive: 1 column (mobile) → 2 columns (tablet) → 3 columns (desktop) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-16 sm:mb-20 md:mb-24">
           {features.map((feature, index) => (
             <motion.div
@@ -47,7 +66,10 @@ export const KeyFeatures = ({
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.2 // Staggered animation creates waterfall effect
+              }}
               className="flex flex-col"
             >
               {/* Feature Title */}
@@ -55,20 +77,21 @@ export const KeyFeatures = ({
                 {feature.title}
               </h3>
 
-              {/* Screenshot */}
+              {/* Feature Screenshot with Project-Branded Glow */}
+              {/* Same layered glow technique as other sections for visual consistency */}
               <motion.div 
                 className="rounded-2xl overflow-hidden border-2 relative mb-6"
                 style={{ borderColor: accentColor }}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Green glow effect */}
+                {/* Outer glow layer */}
                 <div 
                   className="absolute -inset-4 rounded-2xl blur-2xl opacity-50 -z-10"
                   style={{ background: accentColor }}
                 />
                 
-                {/* Layered shadows */}
+                {/* Multiple box-shadows for depth */}
                 <div
                   className="absolute inset-0 rounded-2xl -z-10"
                   style={{
@@ -81,6 +104,7 @@ export const KeyFeatures = ({
                   }}
                 />
                 
+                {/* bg-black prevents white flash while image loads */}
                 <img
                   src={feature.screenshot}
                   alt={`${feature.title} screenshot`}
@@ -88,13 +112,15 @@ export const KeyFeatures = ({
                 />
               </motion.div>
 
-              {/* Bullet Points */}
+              {/* Feature Bullet Points */}
+              {/* Custom bullet dots use project accent color for brand cohesion */}
               <ul className="space-y-3 sm:space-y-4">
                 {feature.bullets.map((bullet, bulletIndex) => (
                   <li
                     key={bulletIndex}
                     className="flex items-start gap-3"
                   >
+                    {/* Custom colored bullet dot */}
                     <span 
                       className="flex-shrink-0 w-2 h-2 rounded-full mt-2"
                       style={{ backgroundColor: accentColor }}
@@ -109,7 +135,7 @@ export const KeyFeatures = ({
           ))}
         </div>
 
-        {/* Divider - Mobile Only */}
+        {/* Section Divider - Mobile Only */}
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}

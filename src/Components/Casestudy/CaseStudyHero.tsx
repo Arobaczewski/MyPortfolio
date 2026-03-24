@@ -1,6 +1,22 @@
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
+/**
+ * CaseStudyHero Component
+ * 
+ * Hero section for case study pages that displays project overview and branding.
+ * Supports flexible customization including brand-specific colors, fonts, backgrounds,
+ * and optional animated elements (e.g., falling leaves for Bloom Wellness).
+ * 
+ * Key Features:
+ * - Dynamic theming per project (colors, fonts, backgrounds)
+ * - Video or image background support
+ * - Optional logo animations and drop shadows
+ * - Responsive layout (stacks on mobile, side-by-side on desktop)
+ * - Demo and GitHub links positioned below logo
+ * - Smooth scroll indicator to next section
+ */
+
 interface CaseStudyHeroProps {
   company: string;
   role: string;
@@ -38,6 +54,7 @@ export const CaseStudyHero = ({
   demoUrl,
   githubUrl,
 }: CaseStudyHeroProps) => {
+  // Smooth scroll to next section when arrow is clicked
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('context-role');
     if (nextSection) {
@@ -54,14 +71,14 @@ export const CaseStudyHero = ({
         height: '90vh'
       }}
     >
-      {/* Falling Elements */}
+      {/* Optional animated elements (e.g., falling leaves for Bloom) */}
       {fallingElements && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
           {fallingElements}
         </div>
       )}
 
-      {/* Video Background */}
+      {/* Background - Video option for dynamic projects like WeatherBeatz */}
       {backgroundVideo && (
         <video
           autoPlay
@@ -74,7 +91,7 @@ export const CaseStudyHero = ({
         </video>
       )}
 
-      {/* Image Background */}
+      {/* Background - Static image option for projects like Bloom */}
       {!backgroundVideo && backgroundImage && (
         <div
           className="absolute inset-0 w-full h-full"
@@ -87,22 +104,22 @@ export const CaseStudyHero = ({
         />
       )}
 
-      {/* Dark overlay for video */}
+      {/* Semi-transparent overlay for video backgrounds to improve text readability */}
       {backgroundVideo && (
         <div className="absolute inset-0 bg-black/30" />
       )}
 
-      {/* Content Container */}
+      {/* Main Content Container - Two-column layout on desktop */}
       <div className="relative z-20 flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-24 max-w-7xl mx-auto w-full">
         
-        {/* Left Side - Text Content */}
+        {/* Left Column - Project Details */}
         <motion.div
           className="max-w-xl w-full"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Company Name */}
+          {/* Company Name - Uses custom font per project (e.g., Dancing Script for Robo's) */}
           <h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 md:mb-12 text-center md:text-left"
             style={{ 
@@ -137,7 +154,7 @@ export const CaseStudyHero = ({
             </p>
           </div>
 
-          {/* Technologies */}
+          {/* Technologies Used */}
           <div className="mb-4 sm:mb-6 md:mb-8">
             <h2 className="text-base sm:text-lg md:text-xl font-bold mb-2" style={{ color: textColor }}>
               Technologies
@@ -158,14 +175,14 @@ export const CaseStudyHero = ({
           </div>
         </motion.div>
 
-        {/* Right Side - Logo + Buttons */}
+        {/* Right Column - Logo and Action Buttons */}
         <motion.div
           className="flex flex-col items-center gap-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {/* Logo */}
+          {/* Project Logo - Optional wiggle animation for playful branding (Robo's) */}
           <motion.div
             className="shrink-0"
             animate={
@@ -198,9 +215,9 @@ export const CaseStudyHero = ({
             />
           </motion.div>
 
-          {/* Buttons */}
+          {/* Action Buttons - Demo and GitHub links positioned below logo */}
           <div className="flex flex-wrap justify-center gap-3">
-            {/* Demo Button */}
+            {/* Demo Button - Only renders if demoUrl is provided */}
             {demoUrl && (
               <motion.a
                 href={demoUrl}
@@ -219,7 +236,7 @@ export const CaseStudyHero = ({
               </motion.a>
             )}
 
-            {/* GitHub Button */}
+            {/* GitHub Button - Only renders if githubUrl is provided (not all projects have public repos) */}
             {githubUrl && (
               <motion.a
                 href={githubUrl}
@@ -241,7 +258,8 @@ export const CaseStudyHero = ({
         </motion.div>
       </div>
 
-      {/* Scroll Indicator - Desktop Only, Clickable */}
+      {/* Scroll Indicator - Guides users to continue reading the case study */}
+      {/* Hidden on mobile to avoid cluttering smaller screens */}
       <motion.div
         className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 hidden sm:flex"
         initial={{ opacity: 0 }}
@@ -250,7 +268,7 @@ export const CaseStudyHero = ({
       >
         <motion.button
           onClick={scrollToNextSection}
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 8, 0] }} // Bouncing animation to draw attention
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-2 text-neutral-300 cursor-pointer hover:text-white transition-colors"
           whileHover={{ scale: 1.1 }}

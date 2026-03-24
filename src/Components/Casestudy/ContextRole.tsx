@@ -1,5 +1,18 @@
 import { motion } from 'framer-motion';
 
+/**
+ * ContextRole Component
+ * 
+ * Case study section that provides project background and defines the developer's role.
+ * Uses a two-column layout with text on the left and a visual screenshot on the right.
+ * 
+ * Key Features:
+ * - Animated entrance from opposite directions (text from left, image from right)
+ * - Project-branded glow effect on screenshot using accent color
+ * - Responsive layout (stacks on mobile, side-by-side on desktop)
+ * - Scroll arrow on desktop / divider on mobile for section navigation
+ */
+
 interface ContextRoleProps {
   context: string;
   role: string;
@@ -13,6 +26,7 @@ export const ContextRole = ({
   screenshot,
   accentColor,
 }: ContextRoleProps) => {
+  // Navigate to next section when scroll arrow is clicked
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('problem');
     if (nextSection) {
@@ -26,15 +40,16 @@ export const ContextRole = ({
       className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black"
     >
       <div className="max-w-7xl mx-auto w-full">
-        {/* Main Content Grid */}
+        {/* Two-Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 xl:gap-24 items-center mb-16 sm:mb-20 md:mb-24">
           
-          {/* Left Side - Text Content */}
+          {/* Left Column - Project Context and Developer Role */}
+          {/* Animates from left, re-triggers animation on scroll for dynamic feel */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            viewport={{ once: false, margin: '-100px' }}
+            viewport={{ once: false, margin: '-100px' }} // Triggers 100px before entering viewport
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1 space-y-6 sm:space-y-8"
           >
@@ -42,6 +57,7 @@ export const ContextRole = ({
               Context & Role
             </h2>
 
+            {/* Project Context - Explains business problem and project goals */}
             <div>
               <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-white">
                 Context
@@ -51,6 +67,7 @@ export const ContextRole = ({
               </p>
             </div>
 
+            {/* Developer Role - Clarifies responsibilities and technical contributions */}
             <div>
               <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-white">
                 My Role
@@ -61,7 +78,8 @@ export const ContextRole = ({
             </div>
           </motion.div>
 
-          {/* Right Side - Screenshot */}
+          {/* Right Column - Project Screenshot with Branded Glow Effect */}
+          {/* Animates from right, order swapped on mobile for visual priority */}
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,17 +88,21 @@ export const ContextRole = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="order-1 lg:order-2"
           >
+            {/* Screenshot Container with Layered Glow Effects */}
+            {/* Uses project accent color (green for Bloom, purple for Robo's, etc.) */}
             <motion.div 
               className="rounded-2xl overflow-hidden border-2 relative"
               style={{ borderColor: accentColor }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
+              {/* Outer glow - creates soft halo effect around image */}
               <div 
                 className="absolute -inset-4 rounded-2xl blur-2xl opacity-50 -z-10"
                 style={{ background: accentColor }}
               />
               
+              {/* Layered shadows - multiple box-shadows for depth and brand cohesion */}
               <div
                 className="absolute inset-0 rounded-2xl -z-10"
                 style={{
@@ -102,7 +124,8 @@ export const ContextRole = ({
           </motion.div>
         </div>
 
-        {/* Divider - Mobile Only */}
+        {/* Section Divider - Mobile Only */}
+        {/* Provides visual separation on smaller screens where scroll arrow is hidden */}
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -115,7 +138,8 @@ export const ContextRole = ({
           }}
         />
 
-        {/* Scroll Arrow - Desktop Only, In Flow */}
+        {/* Scroll Arrow - Desktop Only */}
+        {/* Guides users through case study narrative, hidden on mobile to save space */}
         <motion.div
           className="hidden sm:flex justify-center"
           initial={{ opacity: 0 }}
@@ -125,7 +149,7 @@ export const ContextRole = ({
         >
           <motion.button
             onClick={scrollToNextSection}
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 8, 0] }} // Bouncing animation
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
             className="cursor-pointer text-neutral-500 hover:text-neutral-300 transition-colors"
             whileHover={{ scale: 1.1 }}

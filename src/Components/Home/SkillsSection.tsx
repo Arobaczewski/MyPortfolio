@@ -1,11 +1,35 @@
 import { motion } from 'framer-motion';
 
+/**
+ * SkillsSection Component
+ * 
+ * Homepage section showcasing technical capabilities organized into three key areas.
+ * Uses card-based layout to communicate skills in a scannable, digestible format.
+ * 
+ * Key Features:
+ * - Three-column grid (Frontend, Full-Stack, Product)
+ * - Staggered entrance animations for visual interest
+ * - Hover effects on cards for interactivity
+ * - Business-oriented language that connects technical skills to value delivery
+ * 
+ * Design Intent:
+ * Positions technical skills in context of business value rather than just
+ * listing technologies. Each card answers "what can you do?" rather than
+ * "what have you learned?" - more relevant for recruiters and hiring managers.
+ */
+
 interface SkillCardProps {
   title: string;
   points: string[];
   index: number;
 }
 
+/**
+ * SkillCard Component
+ * 
+ * Individual skill category card with title and capability bullets.
+ * Staggered animation delay based on index creates cascading entrance effect.
+ */
 function SkillCard({ title, points, index }: SkillCardProps) {
   return (
     <motion.div
@@ -13,15 +37,19 @@ function SkillCard({ title, points, index }: SkillCardProps) {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      whileHover={{ y: -4 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.15 // Staggered delay creates cascading effect
+      }}
+      whileHover={{ y: -4 }} // Subtle lift on hover
     >
-      {/* Title */}
+      {/* Card Title */}
       <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6">
         {title}
       </h3>
 
-      {/* Bullet Points */}
+      {/* Capability Bullets */}
+      {/* Focuses on outcomes and value rather than specific technologies */}
       <ul className="space-y-2 sm:space-y-3">
         {points.map((point, i) => (
           <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-neutral-400">
@@ -35,6 +63,8 @@ function SkillCard({ title, points, index }: SkillCardProps) {
 }
 
 export const SkillsSection = () => {
+  // Skill categories organized to show breadth of capabilities
+  // Language emphasizes business impact and practical application
   const skills = [
     {
       title: 'Frontend Engineering',
@@ -63,9 +93,12 @@ export const SkillsSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 bg-black">
+    <section 
+      id="skills"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 bg-black"
+    >
       <div className="max-w-7xl mx-auto w-full py-12 sm:py-16 md:py-20">
-        {/* Header */}
+        {/* Section Header */}
         <motion.div
           className="text-center mb-12 sm:mb-16 md:mb-20 px-4"
           initial={{ opacity: 0, y: 30 }}
@@ -82,6 +115,7 @@ export const SkillsSection = () => {
         </motion.div>
 
         {/* Skills Grid */}
+        {/* Three columns on desktop, single column on mobile */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {skills.map((skill, index) => (
             <SkillCard
@@ -94,7 +128,8 @@ export const SkillsSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - Hidden on mobile */}
+      {/* Scroll Indicator - Desktop Only */}
+      {/* Guides users to Work section (project showcase) */}
       <motion.div
         className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 hidden sm:flex"
         initial={{ opacity: 0 }}
@@ -109,7 +144,7 @@ export const SkillsSection = () => {
               nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }}
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 8, 0] }} // Bouncing animation
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="text-neutral-500 cursor-pointer hover:text-neutral-300 transition-colors"
           whileHover={{ scale: 1.1 }}

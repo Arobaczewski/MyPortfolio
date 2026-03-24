@@ -1,6 +1,24 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * SeeItLive Component
+ * 
+ * Final call-to-action section for case studies that encourages users to
+ * interact with the live project or view source code on GitHub.
+ * 
+ * Key Features:
+ * - Large, prominent action buttons (Demo filled, GitHub outlined)
+ * - Conditional rendering (not all projects have public repos)
+ * - Subtle "Explore More Projects" link to encourage portfolio browsing
+ * - Project-branded styling using accent color
+ * 
+ * Design Intent:
+ * Creates a clear path for recruiters to experience the project firsthand
+ * or review the codebase, followed by an easy way to continue exploring
+ * other work in the portfolio.
+ */
+
 interface SeeItLiveProps {
   demoUrl?: string;
   githubUrl?: string;
@@ -14,6 +32,7 @@ export const SeeItLive = ({
 }: SeeItLiveProps) => {
   const navigate = useNavigate();
 
+  // Navigate to projects page to encourage portfolio exploration
   const handleNavigation = (path: string) => {
     navigate(path);
   };
@@ -35,7 +54,9 @@ export const SeeItLive = ({
           See it Live!
         </motion.h2>
 
-        {/* Main Buttons */}
+        {/* Primary Action Buttons */}
+        {/* Demo button uses filled style to draw more attention */}
+        {/* GitHub button uses outlined style as secondary action */}
         <motion.div
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -43,7 +64,8 @@ export const SeeItLive = ({
           viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Demo Button */}
+          {/* Demo Button - Primary CTA */}
+          {/* Only renders if demo URL is provided */}
           {demoUrl && (
             <motion.a
               href={demoUrl}
@@ -51,7 +73,7 @@ export const SeeItLive = ({
               rel="noopener noreferrer"
               className="px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-lg font-bold text-lg sm:text-xl md:text-2xl text-center"
               style={{
-                backgroundColor: accentColor,
+                backgroundColor: accentColor, // Filled with project accent color
                 color: '#ffffff',
               }}
               whileHover={{ scale: 1.05, y: -3 }}
@@ -61,7 +83,8 @@ export const SeeItLive = ({
             </motion.a>
           )}
 
-          {/* GitHub Button */}
+          {/* GitHub Button - Secondary CTA */}
+          {/* Only renders if GitHub URL is provided (not all projects are public) */}
           {githubUrl && (
             <motion.a
               href={githubUrl}
@@ -70,7 +93,7 @@ export const SeeItLive = ({
               className="px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-lg font-bold text-lg sm:text-xl md:text-2xl text-center"
               style={{
                 backgroundColor: 'transparent',
-                border: `3px solid ${accentColor}`,
+                border: `3px solid ${accentColor}`, // Outlined style
                 color: accentColor,
               }}
               whileHover={{ scale: 1.05, y: -3 }}
@@ -82,6 +105,7 @@ export const SeeItLive = ({
         </motion.div>
 
         {/* Explore More Projects Link */}
+        {/* Subtle styling encourages continued browsing without competing with CTAs */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
