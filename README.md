@@ -1,73 +1,145 @@
-# React + TypeScript + Vite
+# Alex Robaczewski - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive portfolio showcasing my journey from technology sales to software development. Built with React, TypeScript, and Framer Motion to demonstrate technical skills and real-world project experience.
 
-Currently, two official plugins are available:
+🔗 **Live Site**: [https://alexrobo.dev/](https://alexrobo.dev/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🎯 About
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This portfolio represents my transition into software development and highlights production applications I've built to solve real business problems. Each project demonstrates practical skills in frontend development, API integration, state management, and deployment practices.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: React, TypeScript, Vite
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Routing**: React Router
+- **Deployment**: Vercel
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Featured Projects
+
+### Bloom Wellness
+**Operational Workflow Optimization**
+
+A suite of digital tools built to streamline internal operations and customer communication during a business transition. Includes a tip calculator, transition landing page, and QR-based promotional system.
+
+- **Tech**: React, TypeScript, Cloudflare Pages
+- **Impact**: Reduced weekly tip calculations from 1 hour to 15 minutes
+- [View Case Study](https://alexrobo.dev/work/bloom-wellness)
+
+### Robo's Wishlist
+**Full-Stack E-commerce Platform**
+
+A production-style e-commerce application demonstrating secure authentication, state management, and complete shopping workflows including cart, favorites, checkout, and order history.
+
+- **Tech**: Next.js, TypeScript, Redux, JWT
+- **Features**: User authentication, cart persistence, guest checkout
+- 🔗 [Live Demo](https://robos-wishlist.vercel.app/) | 💻 [GitHub](https://github.com/Arobaczewski/RobosWishlist)
+- [View Case Study](https://alexrobo.dev/work/robos-wishlist)
+
+### WeatherBeatz
+**API Integration & Algorithm Design**
+
+A context-aware music application that generates personalized Spotify playlists based on real-time weather conditions using custom algorithms and API orchestration.
+
+- **Tech**: React, Spotify API, OpenWeather API
+- **Features**: Geolocation, OAuth authentication, playlist generation
+- 🔗 [Live Demo](https://weatherbeatz.netlify.app/) | 💻 [GitHub](https://github.com/Arobaczewski/WeatherBeats)
+- [View Case Study](https://alexrobo.dev/work/weatherbeatz)
+
+---
+
+## 🎨 Design Features
+
+- **Apple Keynote-style Presentations**: Smooth scroll-based project carousel
+- **Dynamic Color System**: Navigation adapts to match each project's brand
+- **Responsive Design**: Optimized for desktop and mobile experiences
+- **Smooth Animations**: Framer Motion-powered transitions and interactions
+- **Case Study Pages**: Detailed breakdowns of problem-solving approach and technical implementation
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/Arobaczewski/MyPortfolio.git
+
+# Navigate to project directory
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The site will be available at `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Build for Production
+```bash
+npm run build
 ```
+
+---
+
+## 📁 Project Structure
+```
+src/
+├── Components/
+│   ├── Home/           # Homepage sections
+│   ├── Projects/       # Project carousel components
+│   ├── Casestudy/      # Case study page components
+│   └── Layout/         # Navigation, Footer, PageTransition
+├── Pages/              # Route pages (Home, Projects, Play, About)
+├── index.css           # Global styles (Tailwind v4)
+└── App.tsx             # Route configuration
+```
+
+---
+
+## 🎓 Background
+
+I'm a developer with 8+ years of experience in technology sales at AT&T and Verizon, now focused on building software that solves real business problems. I began coding in March 2025 through Codecademy's full-stack program and have since built production applications currently in use.
+
+### Technical Focus
+- **Frontend**: React, TypeScript, modern CSS frameworks
+- **Learning**: C#, .NET, MSSQL for full-stack development
+- **Approach**: Business-minded development with emphasis on practical, production-ready solutions
+
+---
+
+## 📫 Connect
+
+- **Email**: alexander.robaczewski@gmail.com
+- **LinkedIn**: [https://www.linkedin.com/in/alexander-robaczewski](https://www.linkedin.com/in/alexander-robaczewski)
+- **GitHub**: [https://github.com/Arobaczewski](https://github.com/Arobaczewski)
+- **Location**: Greater Chicago Area, IL
+
+---
+
+## 📝 License
+
+This portfolio is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 🙏 Acknowledgments
+
+Built with inspiration from modern portfolio designs and Apple's presentation style. Special thanks to the development community for tools, resources, and open-source libraries that made this possible.
+
+---
+
+*Last Updated: March 2026*
