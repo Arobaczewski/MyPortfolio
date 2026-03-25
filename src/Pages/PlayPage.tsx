@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
+import type { PanInfo } from 'framer-motion';
 import { PageTransition } from '../Components/Layout/PageTransition';
 import { Footer } from '../Components/Layout/Footer';
 
@@ -20,7 +21,6 @@ export const PlayPage = () => {
     document.title = 'Play - Alex Robaczewski';
   }, []);
 
-  // Placeholder items - replace with real content later
   const playItems: PlayItem[] = [
     {
       title: 'Travel & Music',
@@ -149,7 +149,7 @@ export const PlayPage = () => {
   );
 };
 
-// Carousel Card Component
+// Carousel Card Component with Touch Swipe
 interface PlayCardProps {
   item: PlayItem;
   index: number;
@@ -157,6 +157,7 @@ interface PlayCardProps {
 
 const PlayCard = ({ item, index }: PlayCardProps) => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const x = useMotionValue(0);
 
   const nextMedia = () => {
     setCurrentMediaIndex((prev) => (prev + 1) % item.media.length);
@@ -164,6 +165,19 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
 
   const prevMedia = () => {
     setCurrentMediaIndex((prev) => (prev - 1 + item.media.length) % item.media.length);
+  };
+
+  // Handle swipe/drag end
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 50; // pixels
+    
+    if (info.offset.x > swipeThreshold) {
+      // Swiped right - go to previous
+      prevMedia();
+    } else if (info.offset.x < -swipeThreshold) {
+      // Swiped left - go to next
+      nextMedia();
+    }
   };
 
   const hasMultipleMedia = item.media.length > 1;
@@ -181,43 +195,48 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
         {item.title}
       </h2>
 
-      {/* Media Carousel */}
+      {/* Media Carousel with Touch Swipe */}
       <div className="relative overflow-hidden rounded-2xl mb-4 bg-neutral-900 aspect-video group">
-        {/* Media Content */}
+        {/* Media Content - Swipeable */}
         <AnimatePresence mode="wait">
-          {currentMedia.type === 'image' ? (
-            <motion.img
-              key={currentMediaIndex}
-              src={currentMedia.src}
-              alt={currentMedia.caption}
-              className="w-full h-full object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          ) : (
-            <motion.video
-              key={currentMediaIndex}
-              src={currentMedia.src}
-              className="w-full h-full object-cover"
-              autoPlay
-              loop
-              controls
-              playsInline
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          )}
+          <motion.div
+            key={currentMediaIndex}
+            drag={hasMultipleMedia ? "x" : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            style={{ x }}
+            className="w-full h-full touch-pan-y"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {currentMedia.type === 'image' ? (
+              <img
+                src={currentMedia.src}
+                alt={currentMedia.caption}
+                className="w-full h-full object-cover pointer-events-none select-none"
+                draggable={false}
+              />
+            ) : (
+              <video
+                src={currentMedia.src}
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                controls
+                playsInline
+              />
+            )}
+          </motion.div>
         </AnimatePresence>
 
         {/* Caption Overlay */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentMediaIndex}
-            className="absolute bottom-0 left-0 right-50 p-4 sm:p-6"
+            className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 pointer-events-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
@@ -229,13 +248,13 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows - Desktop Only */}
         {hasMultipleMedia && (
           <>
             {/* Previous Button */}
             <button
               onClick={prevMedia}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
               aria-label="Previous media"
             >
               <svg
@@ -253,7 +272,7 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
             {/* Next Button */}
             <button
               onClick={nextMedia}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
               aria-label="Next media"
             >
               <svg
@@ -269,7 +288,7 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
             </button>
 
             {/* Dots Indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-10">
               {item.media.map((_, i) => (
                 <button
                   key={i}
