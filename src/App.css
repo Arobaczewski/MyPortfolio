@@ -46,9 +46,23 @@ html, body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
+  max-width: 100vw;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Ensure smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow */
+.App {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
