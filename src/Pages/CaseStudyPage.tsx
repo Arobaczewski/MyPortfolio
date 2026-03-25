@@ -36,7 +36,7 @@ export const CaseStudyPage = () => {
           technologies={['React', 'TypeScript', 'Cloudflare Pages']}
           skill="Operational Workflow Optimization"
           logoImage="/bloom/bloomlogo.svg"
-          backgroundImage="/bloombackground.svg"
+          backgroundImage="/bloom/bloombackground.svg"
           backgroundColor="#f6f8ef"
           textColor="#00461e"
           companyFont="'Arial MT', Arial, sans-serif"

@@ -3,19 +3,19 @@ import { motion } from 'framer-motion';
 /**
  * OutcomesTakeaways Component
  * 
- * Displays the measurable impact and business outcomes of a project.
- * Features an optional animated SVG background (e.g., Bloom logo outline)
- * that pulses subtly behind the content for brand reinforcement.
+ * Displays measurable business impact and results from the project.
+ * Features animated background logo that pulses behind content.
  * 
  * Key Features:
- * - Large, prominent bullet points emphasizing quantifiable results
- * - Animated background SVG with pulsing glow effect
- * - Staggered entrance animations for each impact statement
+ * - Large, prominent impact statements
+ * - Animated background SVG (project logo with pulsing glow)
+ * - Staggered entrance animations for readability
  * - Scroll arrow for desktop / divider for mobile navigation
  * 
  * Design Intent:
- * This section focuses on business value and measurable outcomes to
- * demonstrate the real-world impact of technical solutions.
+ * Emphasizes business value and real-world results over technical details.
+ * The pulsing logo background creates visual interest while reinforcing
+ * project branding.
  */
 
 interface OutcomesTakeawaysProps {
@@ -29,7 +29,6 @@ export const OutcomesTakeaways = ({
   accentColor,
   backgroundSvg,
 }: OutcomesTakeawaysProps) => {
-  // Navigate to "What I Learned" section when scroll arrow is clicked
   const scrollToNextSection = () => {
     const nextSection = document.getElementById('what-i-learned');
     if (nextSection) {
@@ -40,17 +39,16 @@ export const OutcomesTakeaways = ({
   return (
     <section 
       id="impact"
-      className="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-hidden"
+      className="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-hidden isolate"
     >
-      {/* Optional Animated Background SVG */}
-      {/* Creates subtle brand presence without distracting from content */}
+      {/* Animated SVG Background - Constrained to this section only */}
       {backgroundSvg && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-          {/* Pulsing Glow Layer - Creates breathing effect */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Glow Layer */}
           <motion.div
             className="absolute"
             animate={{
-              opacity: [0.3, 0.6, 0.3], // Fades in and out
+              opacity: [0.3, 0.6, 0.3],
             }}
             transition={{
               duration: 3,
@@ -65,8 +63,7 @@ export const OutcomesTakeaways = ({
             }}
           />
           
-          {/* SVG Image with Subtle Scale Animation */}
-          {/* Low opacity ensures it stays in the background */}
+          {/* SVG with Scale Animation */}
           <motion.img
             src={backgroundSvg}
             alt="Background decoration"
@@ -74,10 +71,10 @@ export const OutcomesTakeaways = ({
             style={{
               width: '60%',
               height: 'auto',
-              opacity: 0.25, // Subtle presence
+              opacity: 0.25,
             }}
             animate={{
-              scale: [1, 1.1, 1], // Gentle breathing animation
+              scale: [1, 1.1, 1],
             }}
             transition={{
               duration: 4,
@@ -100,8 +97,8 @@ export const OutcomesTakeaways = ({
           Impact
         </motion.h2>
 
-        {/* Impact Statements */}
-        {/* Larger text size than other sections to emphasize business value */}
+        {/* Impact List */}
+        {/* Larger text emphasizes importance of business results */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,16 +115,16 @@ export const OutcomesTakeaways = ({
                 viewport={{ once: false }}
                 transition={{ 
                   duration: 0.6, 
-                  delay: 0.1 * index // Staggered for visual interest
+                  delay: 0.1 * index // Staggered for better readability
                 }}
                 className="flex items-start gap-4 sm:gap-6"
               >
-                {/* Accent-colored bullet dot (slightly larger than other sections) */}
+                {/* Accent-colored bullet dot */}
                 <span 
                   className="flex-shrink-0 w-3 h-3 rounded-full mt-2"
                   style={{ backgroundColor: accentColor }}
                 />
-                {/* Larger text emphasizes quantifiable results and business impact */}
+                {/* Impact statement */}
                 <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-neutral-300">
                   {item}
                 </p>
@@ -164,7 +161,7 @@ export const OutcomesTakeaways = ({
             className="cursor-pointer text-neutral-500 hover:text-neutral-300 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            aria-label="Scroll to next section"
+            aria-label="Scroll to What I Learned section"
           >
             <svg
               width="24"

@@ -39,7 +39,7 @@ export const Problem = ({
   return (
     <section 
       id="problem"
-      className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black"
+      className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-x-hidden"
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Two-Column Grid Layout */}

@@ -40,7 +40,7 @@ export const SeeItLive = ({
   return (
     <section 
       id="see-it-live"
-      className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-20 sm:py-24 md:py-32 bg-black"
+      className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-x-hidden"
     >
       <div className="max-w-4xl mx-auto w-full text-center">
         {/* Section Title */}

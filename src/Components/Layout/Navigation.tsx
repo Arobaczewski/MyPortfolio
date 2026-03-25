@@ -95,7 +95,7 @@ export const Navigation = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-6 md:px-12 overflow-x-hidden">
         <div className="flex items-center justify-between h-20">
           {/* Logo / Name - Clickable home link */}
           <motion.div

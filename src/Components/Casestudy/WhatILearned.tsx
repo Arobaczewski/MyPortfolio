@@ -37,9 +37,9 @@ export const WhatILearned = ({
   return (
     <section 
       id="what-i-learned"
-      className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black"
+      className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-x-hidden"
     >
-      <div className="max-w-5xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full max-w-full">
         {/* Section Title */}
         <motion.h2 
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12 sm:mb-16 text-center"
