@@ -16,6 +16,8 @@ interface PlayItem {
   description: string; // Overall description of the collection
 }
 
+
+
 export const PlayPage = () => {
   useEffect(() => {
     document.title = 'Play - Alex Robaczewski';
@@ -149,7 +151,7 @@ export const PlayPage = () => {
   );
 };
 
-// Carousel Card Component with Touch Swipe
+// Carousel Card Component with Touch Swipe ONLY
 interface PlayCardProps {
   item: PlayItem;
   index: number;
@@ -167,7 +169,7 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
     setCurrentMediaIndex((prev) => (prev - 1 + item.media.length) % item.media.length);
   };
 
-  // Handle swipe/drag end
+  // Handle swipe/drag end - MOBILE ONLY
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const swipeThreshold = 50; // pixels
     
@@ -248,10 +250,10 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Arrows - Desktop Only */}
+        {/* Navigation Arrows - Desktop ONLY (Hover to Show) */}
         {hasMultipleMedia && (
           <>
-            {/* Previous Button */}
+            {/* Previous Button - DESKTOP ONLY */}
             <button
               onClick={prevMedia}
               className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
@@ -269,7 +271,7 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
               </svg>
             </button>
 
-            {/* Next Button */}
+            {/* Next Button - DESKTOP ONLY */}
             <button
               onClick={nextMedia}
               className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
@@ -288,17 +290,15 @@ const PlayCard = ({ item, index }: PlayCardProps) => {
             </button>
 
             {/* Dots Indicator */}
-            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-10 pointer-events-none">
               {item.media.map((_, i) => (
-                <button
+                <div
                   key={i}
-                  onClick={() => setCurrentMediaIndex(i)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     i === currentMediaIndex
                       ? 'bg-white w-6'
-                      : 'bg-white/50 hover:bg-white/75'
+                      : 'bg-white/50'
                   }`}
-                  aria-label={`Go to media ${i + 1}`}
                 />
               ))}
             </div>
