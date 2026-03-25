@@ -17,3 +17,15 @@ html {
   width: 0px;
   background: transparent;
 }
+
+/* Prevent horizontal overflow/drift on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
