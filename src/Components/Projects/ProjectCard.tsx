@@ -61,7 +61,7 @@ export const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <section
-      className="relative min-h-screen w-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-20 sm:py-24 md:py-32"
+      className="relative w-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-24 sm:py-28 md:py-32 min-h-screen"
       style={{
         backgroundColor,
       }}
@@ -98,8 +98,8 @@ export const ProjectCard = ({
       )}
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center">
-        <div className="flex flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
+        <div className="flex flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 mb-8 sm:mb-10 md:mb-12">
           
           {/* Left Column - Project Information */}
           <motion.div
@@ -207,71 +207,71 @@ export const ProjectCard = ({
             />
           </motion.div>
         </div>
+
+        {/* Action Buttons - Below Content, Always Visible */}
+        <motion.div
+          className="relative z-10 w-full"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-2xl mx-auto">
+            {/* Demo Button */}
+            {demoUrl && (
+              <motion.a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base text-center"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: `2px solid ${buttonColor}`,
+                  color: buttonColor,
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Demo
+              </motion.a>
+            )}
+
+            {/* GitHub Button */}
+            {githubUrl && (
+              <motion.a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base text-center"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: `2px solid ${buttonColor}`,
+                  color: buttonColor,
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                GitHub
+              </motion.a>
+            )}
+
+            {/* Case Study Button */}
+            <Link to={`/work/${slug}`} className="w-full sm:w-auto">
+              <motion.button
+                className="w-full px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: `2px solid ${buttonColor}`,
+                  color: buttonColor,
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Case Study
+              </motion.button>
+            </Link>
+          </div>
+        </motion.div>
       </div>
-
-      {/* Action Buttons - Below Content, Visible on All Screens */}
-      <motion.div
-        className="relative z-10 mt-6 sm:mt-8 md:mt-12 w-full"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-      >
-        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-2xl mx-auto">
-          {/* Demo Button */}
-          {demoUrl && (
-            <motion.a
-              href={demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base text-center"
-              style={{
-                backgroundColor: 'transparent',
-                border: `2px solid ${buttonColor}`,
-                color: buttonColor,
-              }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Demo
-            </motion.a>
-          )}
-
-          {/* GitHub Button */}
-          {githubUrl && (
-            <motion.a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base text-center"
-              style={{
-                backgroundColor: 'transparent',
-                border: `2px solid ${buttonColor}`,
-                color: buttonColor,
-              }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              GitHub
-            </motion.a>
-          )}
-
-          {/* Case Study Button */}
-          <Link to={`/work/${slug}`} className="w-full sm:w-auto">
-            <motion.button
-              className="w-full px-6 md:px-8 py-3 md:py-4 rounded-lg font-medium text-sm md:text-base"
-              style={{
-                backgroundColor: 'transparent',
-                border: `2px solid ${buttonColor}`,
-                color: buttonColor,
-              }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Case Study
-            </motion.button>
-          </Link>
-        </div>
-      </motion.div>
     </section>
   );
 };
