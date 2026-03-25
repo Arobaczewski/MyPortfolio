@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
  * - Smooth color transitions (500ms duration)
  * - Click handler for both logo and nav items
  * - Spring physics for underline animation
+ * - Home button hidden on mobile (logo serves as home link)
  * 
  * Design Pattern:
  * Navigation color changes based on:
@@ -113,7 +114,9 @@ export const Navigation = () => {
               <motion.div
                 key={item.path}
                 onClick={() => handleNavigation(item.path)}
-                className="relative text-sm font-medium transition-all duration-500 cursor-pointer"
+                className={`relative text-sm font-medium transition-all duration-500 cursor-pointer ${
+                  item.path === '/' ? 'hidden md:block' : '' // Hide Home on mobile
+                }`}
                 style={{
                   color: navColor, // Adapts to current page/project color
                   opacity: isActive(item.path) ? 1 : 0.7, // Active link is fully opaque
