@@ -6,12 +6,16 @@ import { motion } from 'framer-motion';
  * Creates animated falling elements for project branding (e.g., leaves and lilies for Bloom Wellness).
  * Adds subtle motion and brand personality without distracting from content.
  * 
+ * PERFORMANCE NOTE: Hidden on mobile to prevent performance issues.
+ * Falling animations with multiple elements can cause significant lag on mobile devices.
+ * 
  * Key Features:
  * - Configurable element count (default 10)
  * - Supports multiple image variants (randomly selected)
  * - Each element has randomized properties (position, size, speed, rotation)
  * - Infinite loop with staggered timing for continuous effect
  * - Semi-transparent (50% opacity) to stay subtle
+ * - Desktop only (hidden on screens < 768px)
  * 
  * Technical Details:
  * - Random X position (0-100% of viewport width)
@@ -59,7 +63,7 @@ export const FallingElements = ({ images, count = 10 }: FallingElementsProps) =>
           key={element.id}
           src={element.image}
           alt="Falling decoration"
-          className="absolute"
+          className="absolute hidden md:block" // Hidden on mobile for performance
           style={{
             left: `${element.startX}%`,
             width: `${element.size}px`,
