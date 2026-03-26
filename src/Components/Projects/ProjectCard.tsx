@@ -105,7 +105,7 @@ export const ProjectCard = ({
           
           {/* Left Column - Project Information */}
           <motion.div
-            className="w-full max-w-xl flex-shrink min-w-0 px-2"
+            className="w-full max-w-xl shrink min-w-0 px-2"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -113,7 +113,7 @@ export const ProjectCard = ({
             {/* Company Name - Uses custom font per project */}
             {/* Aggressive text wrapping for long words like "WeatherBeatz" */}
             <h1
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-center xs:text-left break-words hyphens-auto"
+              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-center xs:text-left wrap-break-words hyphens-auto"
               style={{ 
                 color: textColor,
                 fontFamily: companyFont || 'inherit',
@@ -130,40 +130,40 @@ export const ProjectCard = ({
 
             {/* Role */}
             <div className="mb-3 sm:mb-4 md:mb-6">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
                 Role
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {role}
               </p>
             </div>
 
             {/* Duration */}
             <div className="mb-3 sm:mb-4 md:mb-6">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
                 Duration
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {duration}
               </p>
             </div>
 
             {/* Technologies Used */}
             <div className="mb-3 sm:mb-4 md:mb-6">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
                 Technologies
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {technologies.join(', ')}
               </p>
             </div>
 
             {/* Skill Demonstrated */}
             <div className="mb-4 sm:mb-6 md:mb-8">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
                 Skill Demonstrated
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {skill}
               </p>
             </div>
@@ -171,7 +171,7 @@ export const ProjectCard = ({
 
           {/* Right Column - Project Logo (Always Next to Text on larger screens) */}
           <motion.div
-            className="flex-shrink-0"
+            className="shrink-0"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               logoAnimation === 'wiggle'
