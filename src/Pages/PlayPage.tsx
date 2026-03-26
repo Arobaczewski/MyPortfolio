@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
-import type { PanInfo } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '../Components/Layout/PageTransition';
 import { Footer } from '../Components/Layout/Footer';
 
