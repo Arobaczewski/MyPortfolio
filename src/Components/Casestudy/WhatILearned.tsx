@@ -39,7 +39,7 @@ export const WhatILearned = ({
       id="what-i-learned"
       className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-x-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full max-w-full">
+      <div className="mx-auto w-full max-w-full">
         {/* Section Title */}
         <motion.h2 
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12 sm:mb-16 text-center"
@@ -75,7 +75,7 @@ export const WhatILearned = ({
               >
                 {/* Accent-colored bullet dot (slightly larger than standard bullets) */}
                 <span 
-                  className="flex-shrink-0 w-3 h-3 rounded-full mt-2"
+                  className="shrink-0 w-3 h-3 rounded-full mt-2"
                   style={{ backgroundColor: accentColor }}
                 />
                 {/* Larger text emphasizes importance of continuous learning */}

@@ -122,7 +122,7 @@ export const KeyFeatures = ({
                   >
                     {/* Custom colored bullet dot */}
                     <span 
-                      className="flex-shrink-0 w-2 h-2 rounded-full mt-2"
+                      className="shrink-0 w-2 h-2 rounded-full mt-2"
                       style={{ backgroundColor: accentColor }}
                     />
                     <p className="text-sm sm:text-base md:text-lg leading-relaxed text-neutral-300">

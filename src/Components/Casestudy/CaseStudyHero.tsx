@@ -115,7 +115,7 @@ export const CaseStudyHero = ({
           
           {/* Left Column - Text Content */}
           <motion.div
-            className="w-full max-w-xl flex-shrink"
+            className="w-full max-w-xl shrink"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -178,7 +178,7 @@ export const CaseStudyHero = ({
 
           {/* Right Column - Logo (Always Next to Text) */}
           <motion.div
-            className="flex-shrink-0"
+            className="shrink-0"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               logoAnimation === 'wiggle'

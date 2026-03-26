@@ -121,7 +121,7 @@ export const OutcomesTakeaways = ({
               >
                 {/* Accent-colored bullet dot */}
                 <span 
-                  className="flex-shrink-0 w-3 h-3 rounded-full mt-2"
+                  className="shrink-0 w-3 h-3 rounded-full mt-2"
                   style={{ backgroundColor: accentColor }}
                 />
                 {/* Impact statement */}

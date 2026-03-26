@@ -53,7 +53,7 @@ function SkillCard({ title, points, index }: SkillCardProps) {
       <ul className="space-y-2 sm:space-y-3">
         {points.map((point, i) => (
           <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-neutral-400">
-            <span className="text-white mt-1 flex-shrink-0">•</span>
+            <span className="text-white mt-1 shrink-0">•</span>
             <span className="leading-relaxed">{point}</span>
           </li>
         ))}

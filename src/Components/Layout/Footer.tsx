@@ -70,7 +70,7 @@ export const Footer = () => {
 
           {/* Copyright & Location */}
           <p className="text-xs sm:text-sm md:text-base text-neutral-500 px-4">
-            © 2025 Alex Robaczewski • Chicago, IL
+            © 2026 Alex Robaczewski • Chicago, IL
           </p>
           
           {/* Personal Signature */}

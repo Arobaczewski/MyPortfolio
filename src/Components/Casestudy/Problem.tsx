@@ -120,7 +120,7 @@ export const Problem = ({
                 >
                   {/* Accent-colored bullet dot */}
                   <span 
-                    className="flex-shrink-0 w-2 h-2 rounded-full mt-2 sm:mt-2.5"
+                    className="shrink-0 w-2 h-2 rounded-full mt-2 sm:mt-2.5"
                     style={{ backgroundColor: accentColor }}
                   />
                   <p className="text-base sm:text-lg md:text-xl leading-relaxed text-neutral-300">

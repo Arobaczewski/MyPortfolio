@@ -43,7 +43,7 @@ export const Solution = ({
       id="solution"
       className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 bg-black overflow-x-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full max-w-full">
+      <div className="mx-auto w-full max-w-full">
         {/* Two-Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 xl:gap-24 items-center mb-16 sm:mb-20 md:mb-24">
           
