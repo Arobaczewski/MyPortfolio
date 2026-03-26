@@ -100,20 +100,20 @@ export const ProjectCard = ({
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto">
-        {/* Stack vertically on very small phones, side-by-side on larger */}
-        <div className="flex flex-col xs:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-12 lg:gap-16 xl:gap-24 mb-8 sm:mb-10 md:mb-12">
+        {/* Always side-by-side layout (desktop unchanged) */}
+        <div className="flex flex-row items-center justify-center gap-4 sm:gap-6 md:gap-12 lg:gap-16 xl:gap-24 mb-8 sm:mb-10 md:mb-12">
           
           {/* Left Column - Project Information */}
           <motion.div
-            className="w-full max-w-xl shrink min-w-0 px-2"
+            className="w-full max-w-xl flex-shrink min-w-0 px-2 sm:px-0"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Company Name - Uses custom font per project */}
-            {/* Aggressive text wrapping for long words like "WeatherBeatz" */}
+            {/* Aggressive text wrapping for long words like "WeatherBeatz" on mobile */}
             <h1
-              className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-center xs:text-left wrap-break-words hyphens-auto"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-left break-words"
               style={{ 
                 color: textColor,
                 fontFamily: companyFont || 'inherit',
@@ -130,48 +130,48 @@ export const ProjectCard = ({
 
             {/* Role */}
             <div className="mb-3 sm:mb-4 md:mb-6">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
                 Role
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {role}
               </p>
             </div>
 
             {/* Duration */}
             <div className="mb-3 sm:mb-4 md:mb-6">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
                 Duration
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {duration}
               </p>
             </div>
 
             {/* Technologies Used */}
             <div className="mb-3 sm:mb-4 md:mb-6">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
                 Technologies
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {technologies.join(', ')}
               </p>
             </div>
 
             {/* Skill Demonstrated */}
             <div className="mb-4 sm:mb-6 md:mb-8">
-              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 wrap-break-words" style={{ color: textColor }}>
+              <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-1 sm:mb-2 break-words" style={{ color: textColor }}>
                 Skill Demonstrated
               </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg wrap-break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg break-words" style={{ color: textColor, overflowWrap: 'anywhere' }}>
                 {skill}
               </p>
             </div>
           </motion.div>
 
-          {/* Right Column - Project Logo (Always Next to Text on larger screens) */}
+          {/* Right Column - Project Logo (Always Next to Text) */}
           <motion.div
-            className="shrink-0"
+            className="flex-shrink-0"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               logoAnimation === 'wiggle'
@@ -203,7 +203,7 @@ export const ProjectCard = ({
             <img
               src={logoImage}
               alt={`${company} logo`}
-              className="w-28 xs:w-32 sm:w-48 md:w-64 lg:w-80 h-28 xs:h-32 sm:h-48 md:h-64 lg:h-80 object-contain"
+              className="w-28 sm:w-32 md:w-48 lg:w-64 xl:w-80 h-28 sm:h-32 md:h-48 lg:h-64 xl:h-80 object-contain"
               style={{
                 filter: addShadow 
                   ? 'drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.4)) drop-shadow(16px 16px 24px rgba(0, 0, 0, 0.2))' 
@@ -215,7 +215,7 @@ export const ProjectCard = ({
 
         {/* Action Buttons - Below Content, Always Visible */}
         <motion.div
-          className="relative z-10 w-full px-2"
+          className="relative z-10 w-full px-2 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
