@@ -6,6 +6,7 @@ import { ProjectsPage } from './Pages/ProjectsPage';
 import { PlayPage } from './Pages/PlayPage';
 import { AboutPage } from './Pages/AboutPage';
 import { CaseStudyPage } from './Pages/CaseStudyPage';
+import { NotFoundPage } from './Pages/NotFoundPage';
 
 function AppRoutes() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function AppRoutes() {
           <Route path="/work/:slug" element={<CaseStudyPage />} />
           <Route path="/play" element={<PlayPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </AnimatePresence>
     </>
