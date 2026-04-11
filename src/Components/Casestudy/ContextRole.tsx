@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
  * ContextRole Component
  * 
  * Case study section that provides project background and defines the developer's role.
- * Uses a two-column layout with text on the left and a visual screenshot on the right.
+ * Uses a two-column layout with text on the left and a visual media asset on the right.
  * 
  * Key Features:
- * - Animated entrance from opposite directions (text from left, image from right)
- * - Project-branded glow effect on screenshot using accent color
+ * - Animated entrance from opposite directions (text from left, media from right)
+ * - Project-branded glow effect on media using accent color
+ * - Supports both image (screenshot) and video (mp4 collage) via `mediaType` prop
  * - Responsive layout (stacks on mobile, side-by-side on desktop)
  * - Scroll arrow on desktop / divider on mobile for section navigation
  */
@@ -16,14 +17,18 @@ import { motion } from 'framer-motion';
 interface ContextRoleProps {
   context: string;
   role: string;
-  screenshot: string;
+  /** Path or URL to the media asset (image or video) */
+  media: string;
+  /** Controls whether to render an <img> or <video>. Defaults to 'image'. */
+  mediaType?: 'image' | 'video';
   accentColor: string;
 }
 
 export const ContextRole = ({
   context,
   role,
-  screenshot,
+  media,
+  mediaType = 'image',
   accentColor,
 }: ContextRoleProps) => {
   // Navigate to next section when scroll arrow is clicked
@@ -78,7 +83,7 @@ export const ContextRole = ({
             </div>
           </motion.div>
 
-          {/* Right Column - Project Screenshot with Branded Glow Effect */}
+          {/* Right Column - Project Media with Branded Glow Effect */}
           {/* Animates from right, order swapped on mobile for visual priority */}
           <motion.div
             initial={{ opacity: 0, x: 100 }}
@@ -88,7 +93,7 @@ export const ContextRole = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="order-1 lg:order-2"
           >
-            {/* Screenshot Container with Layered Glow Effects */}
+            {/* Media Container with Layered Glow Effects */}
             {/* Uses project accent color (green for Bloom, purple for Robo's, etc.) */}
             <motion.div 
               className="rounded-2xl overflow-hidden border-2 relative"
@@ -96,7 +101,7 @@ export const ContextRole = ({
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Outer glow - creates soft halo effect around image */}
+              {/* Outer glow - creates soft halo effect around media */}
               <div 
                 className="absolute -inset-4 rounded-2xl blur-2xl opacity-50 -z-10"
                 style={{ background: accentColor }}
@@ -114,12 +119,23 @@ export const ContextRole = ({
                   `,
                 }}
               />
-              
-              <img
-                src={screenshot}
-                alt="Project screenshot"
-                className="w-full h-auto object-cover"
-              />
+
+              {mediaType === 'video' ? (
+                /* Video - autoplay, looped, muted (required for autoplay), and playsInline for mobile */
+                <video
+                  src={media}
+                  autoPlay
+                  muted
+                  playsInline
+                  className="w-full h-auto object-cover"
+                />
+              ) : (
+                <img
+                  src={media}
+                  alt="Project screenshot"
+                  className="w-full h-auto object-cover"
+                />
+              )}
             </motion.div>
           </motion.div>
         </div>

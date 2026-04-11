@@ -52,9 +52,10 @@ export const CaseStudyPage = () => {
 
         {/* Context & Role Section */}
         <ContextRole
-          context="During Bloom Wellness' transition from AYR in four Illinois locations, the business needed simple digital tools to improve internal workflows and clearly communicate the brand change to customers."
-          role="I designed and built the full frontend experience for these tools, including a tip calculator for staff and a landing/promo code page for customers. My responsibilities covered the full implementation process, from UI design and React development to business logic and deployment across Netlify and Cloudflare Pages."
-          screenshot="/bloom/bloom-context.png"
+          context="During Bloom Wellness’ transition from AYR and the acquisition of additional Illinois locations, the business needed simple digital tools to support both internal workflows and customer communication across multiple storefronts and brands."
+          role="I designed and built the full frontend experience for several tools, including an internal tip calculator for staff, a customer-facing landing and promo code system, and a dedicated transition landing page for a Revolution location. My responsibilities covered the full implementation process, from UI design and React development to business logic and deployment across Netlify and Cloudflare Pages."
+          media="/bloom/bloom-context.mp4"
+          mediaType='video'
           accentColor="#00461e"
         />
 
@@ -62,19 +63,19 @@ export const CaseStudyPage = () => {
         <Problem
           problems={[
             'Manual tip distribution required weekly calculations by management, creating a time-consuming and repetitive workflow.',
-            'Calculations were performed by hand based on employees, hours worked and total tips, increasing the risk of human error.',
-            'Customers lacked clear communication during the transition from AYR to Bloom Wellness, leading to confusion around the brand change.',
-            "Stores had no system for engaging customers outside the building, limiting opportunities for promotions and new customer traffic.",
+            'Calculations were performed by hand using employee hours and total tips, increasing the risk of human error and inconsistency.',
+            'Customers visiting legacy brand websites during the transition lacked clear communication around store closures, reopening timelines, and available nearby locations.',
+            "Stores had no system for engaging customers outside the building, limiting opportunities for promotions and reducing potential customer traffic.",
           ]}
-          screenshot="/bloom/calculator-problem.png"
+          screenshot="/bloom/bloom-problem.png"
           accentColor="#00461e"
         />
 
         {/* Solution Section */}
         <Solution
           paragraphs={[
-            "To address these challenges, I designed and deployed a small set of focused web tools, each built to solve a specific operational or customer-facing problem. Rather than creating one overly complex system, I approached the project as a lightweight digital toolkit: an internal calculator to automate tip distribution, a transition landing page to support customer communication, and a QR-driven promo code experience to bring external traffic into the store.",
-            "Each tool was designed to be simple, fast, and easy to access in a real retail environment. The frontend experiences were built in React and deployed as lightweight web applications using Netlify and Cloudflare Pages, allowing them to be launched quickly and maintained efficiently."
+            "To address these challenges, I designed and deployed a set of focused web tools, each built to solve a specific operational or customer-facing problem. Rather than creating one overly complex system, I approached the project as a lightweight digital toolkit: an internal calculator to automate tip distribution, a customer-facing landing and promo system, and dedicated transition landing pages to guide users during store acquisitions and brand changes.",
+            "Each tool was designed to be simple, fast, and easy to access in a real retail environment. The frontend experiences were built in React and deployed as lightweight web applications using Netlify and Cloudflare Pages, allowing them to be launched quickly, iterated on, and maintained efficiently."
           ]}
           videoSrc="/bloom/bloom-solution.mp4"
           accentColor="#00461e"
@@ -87,26 +88,26 @@ export const CaseStudyPage = () => {
               title: 'Tip Distribution Calculator',
               bullets: [
                 'Automatically calculates tip distribution based on hours worked',
-                'Eliminates manual calculations and reduces risk of errors',
-                'Simple interface designed for quick daily staff use'
+                'Eliminates manual calculations, reducing time spent and risk of human error',
+                'Designed with a simple, intuitive interface for fast daily use by staff'
               ],
               screenshot: '/bloom/calc-feature.png'
             },
             {
-              title: 'Transition Landing Page',
+              title: 'Multi-Brand Landing Pages',
               bullets: [
-                'Communicates the transition from AYR to Bloom Wellness',
-                'Sent out to every customer of Ayr\'s in Illinois reaching over 100000 people',
-                'Clear messaging guiding customers during the brand change'
+                'Designed landing pages to communicate store transitions across multiple brands, including AYR to Bloom and a separate Revolution location',
+                'Intercepted users from legacy websites to clearly communicate closures, timelines, and next steps',
+                'Guided customers to active Bloom locations using clear messaging and strong call-to-action design'
               ],
               screenshot: '/bloom/landing-feature.png'
             },
             {
               title: 'QR Promo Code Experience',
               bullets: [
-                'Customers scan a QR code outside the store to access a promotion',
-                'Age verification gate ensures compliance with 21+ requirements',
-                'Reveals a stackable 10% discount code redeemable in-store or online'
+                'Enabled customers to scan a QR code outside the store to access a promotion',
+                'Implemented an age verification gate to ensure compliance with 21+ requirements',
+                'Delivered a stackable 10% discount code redeemable in-store or online'
               ],
               screenshot: '/bloom/promo-feature.png'
             }
@@ -117,10 +118,10 @@ export const CaseStudyPage = () => {
         {/* Impact Section */}
         <OutcomesTakeaways
           impact={[
-            'Reduced tip distribution time from approximately 1 hour to around 15 minutes by automating weekly calculations.',
-            'Simplified internal workflows by replacing manual tip calculations with a consistent digital tool.',
-            'Provided clear communication for customers during the transition from AYR to Bloom Wellness.',
-            'Introduced the stores first external promotional system, allowing customers outside the store to access stackable discounts through a QR-based experience.'
+            'Reduced tip distribution time from approximately 1 hour to around 15 minutes by automating weekly calculations, significantly improving operational efficiency.',
+            'Standardized internal workflows by replacing manual calculations with a consistent and reliable digital tool.',
+            'Improved customer communication during a multi-location brand transition by clearly guiding users through store closures and directing them to active Bloom locations.',
+            'Introduced the store\’s first external promotional system, enabling customers outside the store to access stackable discounts through a QR-based experience.'
           ]}
           accentColor="#00461e"
           backgroundSvg="/bloom/bloom-outline.svg"
@@ -129,10 +130,10 @@ export const CaseStudyPage = () => {
         {/* What I learned Section */}
         <WhatILearned
           bullets={[
-            'Building Software for Real Workflows — Learned how to identify operational inefficiencies and design simple tools that improve real-world processes.',
-            'Rapid Development & Deployment — Built and deployed production-ready applications using React, TypeScript, and Tailwind, hosting tools through Netlify and Cloudflare Pages.',
-            'Designing for Real Users — Focused on creating interfaces that are simple and intuitive for staff and customers interacting with the tools in a retail environment.',
-            'Solving Business Problems with Code — Applied software development to streamline internal workflows and improve customer communication during a company transition.'
+            'Building for Real Workflows — Learned how to identify operational inefficiencies and design simple, effective tools that improve real-world processes.',
+            'Rapid Development & Deployment — Built and deployed production-ready applications using React, TypeScript, and Tailwind, leveraging platforms like Netlify and Cloudflare Pages for fast iteration.',
+            'Designing for Real Users  — Focused on creating intuitive, easy-to-use interfaces for both staff and customers in a fast-paced retail environment.',
+            'Solving Business Problems with Code — Applied development skills to streamline internal workflows and improve customer communication during a multi-location brand transition.'
           ]}
           accentColor="#00461e"
         />
@@ -171,7 +172,7 @@ export const CaseStudyPage = () => {
         <ContextRole
           context="Robo's Wishlist is a portfolio project created to explore full-stack ecommerce development and demonstrate realistic user workflows, state management, and authentication systems. The project functions as a fully operational online shopping platform, mimicking the structure and behavior of production ecommerce applications."
           role="I designed and developed the entire application, including the user-facing shopping experience, backend API routes, authentication logic, cart and favorites functionality, and full checkout flow. My responsibilities covered frontend design, database structure, API development, state management implementation, and deploying the application to Vercel."
-          screenshot="/robo/robos-context.png"
+          media="/robo/robos-context.png"
           accentColor="#B069DB"
         />
 
@@ -286,7 +287,7 @@ export const CaseStudyPage = () => {
         <ContextRole
           context="WeatherBeatz is a technical API project built to explore how real-time data can be transformed into a personalized user experience. The application uses browser geolocation and live weather data to generate Spotify playlists that reflect the mood of the user's current environment."
           role="I designed and developed the full application, including the frontend interface, weather-based playlist generation logic, Spotify OAuth integration, and playlist creation flow. My responsibilities included building the API-driven user experience, designing the filtering system for reliable playlist generation, and deploying the application to Netlify."
-          screenshot="/weatherbeatz/weatherbeatz-context.png"
+          media="/weatherbeatz/weatherbeatz-context.png"
           accentColor="#7d7f7c"
         />
 
